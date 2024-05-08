@@ -161,6 +161,8 @@ COMMAND_DEFAULTS = {
 
 MAX_RETRIES = int(config["BOT"]["MAX_RETRIES"] or 3)
 
+ASPECT_RATIOS = dict(config.items("ASPECT_RATIOS")) or {'1x1' : (1024, 1024)}
+
 llm_prompt = config["LLM"]["SYSTEM_PROMPT"]
 
 llm_parameters = {

@@ -15,15 +15,7 @@ class WorkflowType(Enum):
     upscale = "upscale",
     add_detail = "add_detail",
     image_mashup = "image_mashup",
-    video = "video",
-
-sd_aspect_ratios = {
-    "1:1": (1024, 1024),
-    "3:4 portrait": (896, 1152),
-    "9:16 portrait": (768, 1344),
-    "4:3 landscape": (1152, 896),
-    "16:9 landscape": (1344, 768),
-}
+    video = "video"
 
 @dataclass
 class ImageWorkflow:

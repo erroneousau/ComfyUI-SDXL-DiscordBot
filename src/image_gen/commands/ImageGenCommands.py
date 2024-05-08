@@ -10,6 +10,7 @@ from src.consts import *
 from src.image_gen.collage_utils import create_collage
 from src.image_gen.ui.buttons import Buttons
 from src.util import process_attachment, unpack_choices, should_filter, get_filename
+from src.defaults import ASPECT_RATIOS
 
 logger = logging.getLogger("bot")
 
@@ -49,7 +50,7 @@ class ImageGenCommands:
                 if fp is None:
                     return
 
-            dimensions = sd_aspect_ratios[aspect_ratio] if aspect_ratio else sd_aspect_ratios[SD15_GENERATION_DEFAULTS.dimensions]
+            dimensions = ASPECT_RATIOS[aspect_ratio].split(",") if aspect_ratio else ASPECT_RATIOS[SD15_GENERATION_DEFAULTS.dimensions]
             dimensions = (dimensions[0] / 2, dimensions[1] / 2)
 
             params = ImageWorkflow(
@@ -169,7 +170,7 @@ class ImageGenCommands:
                 CASCADE_GENERATION_DEFAULTS.model,
                 loras=unpack_choices(lora, lora2),
                 lora_strengths=[lora_strength, lora_strength2],
-                dimensions=sd_aspect_ratios[aspect_ratio] if aspect_ratio else sd_aspect_ratios[CASCADE_GENERATION_DEFAULTS.dimensions],
+                dimensions=ASPECT_RATIOS[aspect_ratio].split(",") if aspect_ratio else ASPECT_RATIOS[CASCADE_GENERATION_DEFAULTS.dimensions],
                 sampler=CASCADE_GENERATION_DEFAULTS.sampler,
                 num_steps=num_steps or CASCADE_GENERATION_DEFAULTS.num_steps,
                 cfg_scale=cfg_scale or CASCADE_GENERATION_DEFAULTS.cfg_scale,
@@ -304,8 +305,8 @@ class SDXLCommand(ImageGenCommands):
                 model or defaults.model,
                 unpack_choices(lora, lora2),
                 [lora_strength, lora_strength2],
-                dimensions=sd_aspect_ratios[aspect_ratio] if aspect_ratio else sd_aspect_ratios[defaults.dimensions],
-                batch_size=defaults.batch_size,
+                dimensions=ASPECT_RATIOS[aspect_ratio].split(",") if aspect_ratio else ASPECT_RATIOS[defaults.dimensions],
+                batch_size=batch_size or defaults.batch_size,
                 sampler=sampler or defaults.sampler,
                 num_steps=num_steps or defaults.num_steps,
                 cfg_scale=cfg_scale or defaults.cfg_scale,

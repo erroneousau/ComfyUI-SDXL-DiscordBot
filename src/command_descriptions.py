@@ -2,6 +2,8 @@ import json
 
 from discord.app_commands import Choice
 
+
+from src.defaults import ASPECT_RATIOS
 from src.comfyscript_utils import get_models, get_loras, get_samplers, get_schedulers
 from src.consts import *
 from src.defaults import *
@@ -16,14 +18,8 @@ completion_messages = json.loads(open("./data/completion_messages.json", "r").re
 
 # These aspect ratio resolution values correspond to the SDXL Empty Latent Image node.
 # A latent modification node in the workflow converts it to the equivalent SD 1.5 resolution values.
-ASPECT_RATIO_CHOICES = [
-    Choice(name="1:1", value="1:1"),
-    Choice(name="3:4 portrait", value="3:4 portrait"),
-    Choice(name="9:16 portrait", value="9:16 portrait"),
-    Choice(name="4:3 landscape", value="4:3 landscape"),
-    Choice(name="16:9 landscape", value="16:9 landscape"),
-]
 
+ASPECT_RATIO_CHOICES = [Choice(name=key.replace("_", " "), value=key) for key in ASPECT_RATIOS]
 
 def should_filter_model(m, command):
     if "hidden" in m.lower():

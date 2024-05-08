@@ -7,3 +7,5 @@ config.properties
 *.spec
 /embedded_comfy/
 /venv/
+.DS_Store
+custom_nodes/

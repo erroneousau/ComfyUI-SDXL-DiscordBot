@@ -22,6 +22,14 @@ COMFY_ROOT_DIR=embedded_comfy
 [EMBEDDED]
 SERVER_PORT=8188
 
+[ASPECT_RATIOS]
+1x1=1024, 1024
+3x4_portrait=896, 1152
+9x16_portrait=768, 1344
+4x3_landscape=1152, 896
+16x9_landscape=1344, 768
+5x2_landscape=1400, 560
+
 [SDXL_GENERATION_DEFAULTS]
 MODEL=dreamshaperXL10_alpha2Xl10.safetensors
 NUM_STEPS=8
